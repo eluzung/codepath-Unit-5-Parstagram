@@ -24,3 +24,4 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+![](https://github.com/eluzung/codepath-Unit-5-Parstagram/blob/main/codepath_unit_5.gif)
