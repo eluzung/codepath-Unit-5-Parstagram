@@ -13,14 +13,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var feedTableView: UITableView!
     var posts = [PFObject]()
-    
+    let myRefreshControl = UIRefreshControl()
+    var numOfPosts = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        myRefreshControl.addTarget(self, action: #selector(onRefresh), for: UIControl.Event.valueChanged)
+        feedTableView.insertSubview(myRefreshControl, at: 0)
+        
         feedTableView.delegate = self
         feedTableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,13 +31,48 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let query = PFQuery(className: "Posts")
         query.includeKey("author")
-        query.limit = 20
+        query.order(byDescending: "createdAt")
+        query.limit = numOfPosts
         
         query.findObjectsInBackground { (posts, error) in
             if posts != nil {
                 self.posts = posts!
                 self.feedTableView.reloadData()
             }
+        }
+    }
+    
+    //onRefresh() and run() functions are for the refreshing feature
+    @objc func onRefresh() {
+        run(after: 1.5) {
+            self.myRefreshControl.endRefreshing()
+        }
+    }
+    
+    func run(after wait: TimeInterval, closure: @escaping () -> Void) {
+        let queue = DispatchQueue.main
+        queue.asyncAfter(deadline: DispatchTime.now() + wait, execute: closure)
+    }
+    
+    //Infinite scroll feature, loads more Posts
+    func loadMorePosts() {
+        numOfPosts += 5
+        let query = PFQuery(className: "Posts")
+        query.includeKey("author")
+        query.order(byDescending: "createdAt")
+        query.limit = numOfPosts
+        
+        query.findObjectsInBackground { (posts, error) in
+            if posts != nil {
+                self.posts = posts!
+                self.feedTableView.reloadData()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell:UITableViewCell, forRowAt indexPath:IndexPath) {
+        if indexPath.row + 1 == posts.count {
+            loadMorePosts()
         }
     }
     

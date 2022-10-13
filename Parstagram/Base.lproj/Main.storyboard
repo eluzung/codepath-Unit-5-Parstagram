@@ -106,13 +106,13 @@
                                                         <constraint firstAttribute="width" secondItem="Q9r-25-8lv" secondAttribute="height" multiplier="187:184" id="WAp-jW-FJb"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOc-bG-u5S">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOc-bG-u5S">
                                                     <rect key="frame" x="8" y="384" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzG-gB-VMI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzG-gB-VMI">
                                                     <rect key="frame" x="62" y="384" width="320" height="20.333333333333314"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -120,6 +120,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="nOc-bG-u5S" secondAttribute="bottom" constant="8" id="9Oq-je-Kui"/>
                                                 <constraint firstAttribute="trailing" secondItem="AzG-gB-VMI" secondAttribute="trailing" constant="8" id="A0n-Xn-MJV"/>
                                                 <constraint firstItem="Q9r-25-8lv" firstAttribute="top" secondItem="yUb-FJ-3VN" secondAttribute="top" constant="8" id="GaW-dZ-UmU"/>
                                                 <constraint firstItem="AzG-gB-VMI" firstAttribute="leading" secondItem="nOc-bG-u5S" secondAttribute="trailing" constant="8" id="Npx-D8-Ghq"/>
@@ -144,7 +145,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="4UQ-Ta-Cau">
+                        <barButtonItem key="leftBarButtonItem" image="instagram_logo" style="plain" id="fMC-r8-FnA">
+                            <inset key="imageInsets" minX="-75" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" image="insta_camera_btn" id="blX-Af-ub8">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="689-6I-DbG" kind="presentation" id="o1Q-Xy-MpN"/>
                             </connections>
@@ -167,13 +173,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mJa-wa-nBg" userLabel="Caption Text Field">
-                                <rect key="frame" x="16" y="478" width="358" height="34"/>
+                                <rect key="frame" x="16" y="405" width="358" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-IN-gqK">
+                                <rect key="frame" x="20" y="47" width="350" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5FA-8a-tVv" appends="YES" id="hDE-UT-wnE"/>
+                                </connections>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lP-QU-Lf2" userLabel="Submit Button">
-                                <rect key="frame" x="16" y="538" width="358" height="35"/>
+                                <rect key="frame" x="16" y="447" width="358" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Submit"/>
@@ -181,14 +195,6 @@
                                     <action selector="onSubmitButton:" destination="689-6I-DbG" eventType="touchUpInside" id="fEh-m3-WyU"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-IN-gqK">
-                                <rect key="frame" x="20" y="107" width="350" height="350"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="5FA-8a-tVv" appends="YES" id="hDE-UT-wnE"/>
-                                </connections>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uXh-Cd-alS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
