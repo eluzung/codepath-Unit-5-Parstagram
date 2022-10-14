@@ -216,7 +216,7 @@
         <!--Navigation Controller-->
         <scene sceneID="E0A-jH-qQy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="T3Q-5g-6ac" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="T3Q-5g-6ac" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aZu-n1-0F8">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
