@@ -18,7 +18,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [PFObject]()
     var selectedPost: PFObject!
     let myRefreshControl = UIRefreshControl()
-    var numOfPosts = 20
+    var numOfPosts = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +107,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         queue.asyncAfter(deadline: DispatchTime.now() + wait, execute: closure)
     }
     
-    /*
     //Infinite scroll feature, loads more Posts
     func loadMorePosts() {
         numOfPosts += 5
@@ -125,11 +124,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell:UITableViewCell, forRowAt indexPath:IndexPath) {
-        if indexPath.row + 1 == posts.count {
+        if indexPath.section + 1 == posts.count {
             loadMorePosts()
         }
     }
-    */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
